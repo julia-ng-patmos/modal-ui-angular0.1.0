@@ -1,10 +1,22 @@
 <!DOCTYPE html>
-<html>
+<html ng-app="eon-modal">
 <head lang="en">
     <meta charset="UTF-8">
-    <title></title>
+    <title>Prueba para modal version 0.1.0</title>
+    <script src="scripts/libs/angular.js"></script>
+    <script src="scripts/libs/ui-bootstrap-tpls.js"></script>
+    <script src="scripts/libs/angular-sanitize.min.js"></script>
+    <script src="scripts/eon-modal.js"></script>
+    <link href="//netdna.bootstrapcdn.com/bootstrap/3.1.1/css/bootstrap.min.css" rel="stylesheet">
 </head>
-<body>
+    <body>
+    <div ng-controller="modalCtrl">
 
-</body>
+        <button class="btn btn-default" ng-click="open()">Open me!</button>
+        <button class="btn btn-default" ng-click="open('lg')">Large modal</button>
+        <button class="btn btn-default" ng-click="open('sm')">Small modal</button>
+        <div eon-modal="" type="video" url="">Abrir Modal</div>
+        <div ng-show="selected">Selection from a modal: {{ selected }}</div>
+    </div>
+    </body>
 </html>
