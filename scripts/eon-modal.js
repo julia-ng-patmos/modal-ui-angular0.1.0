@@ -39,11 +39,12 @@ myApp.directive('eonModal', function($rootScope) {
             transclude : true,
             controller: 'modalCtrl',
             template: function(ele, attr){
-                console.log(attr.url);
-                if (attr.url){
-                    $rootScope.url = attr.url;
-                }else{
-                    $rootScope.url = '';
+                if (attr.url && attr.type == "video"){
+                    if(navigator.vendor.indexOf("Opera")!=-1){
+                        $rootScope.url = attr.url+".webm";
+                    }else{
+                        $rootScope.url = attr.url+".mp4";
+                    }
                 }
                 switch (attr.type){
                     case 'button':
@@ -52,6 +53,20 @@ myApp.directive('eonModal', function($rootScope) {
                         return '<a class="btn btn-default" ng-click="open(\'sm\',\''+attr.contenido+'\')" ng-transclude></a>';
                     case 'video':
                         return '<a class="btn btn-default" ng-click="open(\'sm\',\'video\')" ng-transclude></a>';
+                    case 'popover':
+                        if(attr.contenido && attr.pos && attr.disparador && attr.titulo && attr.retraso){
+                            return '<button popover-placement="'+attr.pos+'" popover="'+attr.contenido+'" popover-trigger="'+attr.disparador+'" popover-popup-delay="'+attr.retraso+'" popover-title="'+attr.titulo+'" class="btn btn-default" ng-transclude></button>'
+                        }else if(attr.contenido && attr.pos && attr.disparador && attr.titulo){
+                            return '<button popover-placement="'+attr.pos+'" popover="'+attr.contenido+'" popover-trigger="'+attr.disparador+'" popover-title="'+attr.titulo+'" class="btn btn-default" ng-transclude></button>'
+                        }else if(attr.contenido && attr.pos && attr.disparador){
+                            return '<button popover-placement="'+attr.pos+'" popover="'+attr.contenido+'" popover-trigger="'+attr.disparador+'"class="btn btn-default" ng-transclude></button>'
+                        }else if(attr.contenido && attr.pos){
+                            return '<button popover-placement="'+attr.pos+'" popover="'+attr.contenido+'" class="btn btn-default" ng-transclude></button>'
+                        }else if(attr.contenido){
+                            return '<button popover="'+attr.contenido+'" class="btn btn-default" ng-transclude></button>'
+                        }else{
+                            return '<button popover-placement="top" popover="Agrega attr contenido" popover-trigger="mouseenter" popover-popup-delay="500" popover-title="Agrega titulo (opcional)" class="btn btn-default" ng-transclude></button>'
+                        }
                 }
             }
         };

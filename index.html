@@ -10,13 +10,13 @@
     <link href="//netdna.bootstrapcdn.com/bootstrap/3.1.1/css/bootstrap.min.css" rel="stylesheet">
 </head>
     <body>
-    <div ng-controller="modalCtrl">
-
-        <button class="btn btn-default" ng-click="open()">Open me!</button>
-        <button class="btn btn-default" ng-click="open('lg')">Large modal</button>
-        <button class="btn btn-default" ng-click="open('sm')">Small modal</button>
-        <div eon-modal="" type="video" url="">Abrir Modal</div>
-        <div ng-show="selected">Selection from a modal: {{ selected }}</div>
+    <div class="text-center" style="padding-top: 20%">
+        <div eon-modal="" type="video" url="statics/video/video1">Modal Video</div>
+        <div eon-modal="" type="button" contenido="publicidad">Modal Boton</div>
+        <div eon-modal="" type="link" contenido="publicidad">Modal Enlace</div>
+        <div eon-modal="" type="popover" pos="bottom"  titulo="Soy un titulo" contenido="Hacia Abajo!" retraso="1000" disparador="mouseenter">Pop Abajo</div>
+        <div eon-modal="" type="popover">Pop Default</div>
+        <div eon-modal="" type="popover" pos="right"  titulo="Soy un titulo" contenido="A la derecha!" retraso="1000" disparador="mouseenter">Pop Derecha</div>
     </div>
     </body>
 </html>
